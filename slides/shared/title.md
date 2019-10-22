@@ -2,7 +2,7 @@ class: title, self-paced
 
 @@TITLE@@
 
-.nav[*Self-paced version*]
+.nav[*Agile DevOps - Senai 2019*]
 
 ---
 

@@ -1,43 +1,39 @@
-
 class: title
 
-# Our first containers
+# Nosso primeiro container
 
 ![Colorful plastic tubs](images/title-our-first-containers.jpg)
 
 ---
 
-## Objectives
+## Objetivo
 
-At the end of this lesson, you will have:
+Ao final dessa lição, você terá:
 
-* Seen Docker in action.
+- Visto o docker em ação.
 
-* Started your first containers.
+- Levantado seu primeiro container.
 
 ---
 
 ## Hello World
 
-In your Docker environment, just run the following command:
+Apenas rode o comando abaixo:
 
 ```bash
 $ docker run busybox echo hello world
 hello world
 ```
 
-(If your Docker install is brand new, you will also see a few extra lines,
-corresponding to the download of the `busybox` image.)
-
 ---
 
-## That was our first container!
+## Este foi seu primeiro container!
 
-* We used one of the smallest, simplest images available: `busybox`.
+- We used one of the smallest, simplest images available: `busybox`.
 
-* `busybox` is typically used in embedded systems (phones, routers...)
+- `busybox` is typically used in embedded systems (phones, routers...)
 
-* We ran a single process and echo'ed `hello world`.
+- We ran a single process and echo'ed `hello world`.
 
 ---
 
@@ -50,15 +46,15 @@ $ docker run -it ubuntu
 root@04c0bb0a6c07:/#
 ```
 
-* This is a brand new container.
+- This is a brand new container.
 
-* It runs a bare-bones, no-frills `ubuntu` system.
+- It runs a bare-bones, no-frills `ubuntu` system.
 
-* `-it` is shorthand for `-i -t`.
+- `-it` is shorthand for `-i -t`.
 
-  * `-i` tells Docker to connect us to the container's stdin.
+  - `-i` tells Docker to connect us to the container's stdin.
 
-  * `-t` tells Docker that we want a pseudo-terminal.
+  - `-t` tells Docker that we want a pseudo-terminal.
 
 ---
 
@@ -99,11 +95,11 @@ The `figlet` program takes a message as parameter.
 
 ```bash
 root@04c0bb0a6c07:/# figlet hello
- _          _ _       
-| |__   ___| | | ___  
-| '_ \ / _ \ | |/ _ \ 
+ _          _ _
+| |__   ___| | | ___
+| '_ \ / _ \ | |/ _ \
 | | | |  __/ | | (_) |
-|_| |_|\___|_|_|\___/ 
+|_| |_|\___|_|_|\___/
 ```
 
 Beautiful! .emoji[😍]
@@ -121,9 +117,9 @@ root@04c0bb0a6c07:/# dpkg -l | wc -l
 190
 ```
 
-* `dpkg -l` lists the packages installed in our container
+- `dpkg -l` lists the packages installed in our container
 
-* `wc -l` counts them
+- `wc -l` counts them
 
 How many packages do we have on our host?
 
@@ -143,9 +139,9 @@ root@04c0bb0a6c07:/# exit
 
 Now, try to:
 
-* run `dpkg -l | wc -l`. How many packages are installed?
+- run `dpkg -l | wc -l`. How many packages are installed?
 
-* run `figlet`. Does that work?
+- run `figlet`. Does that work?
 
 ---
 
@@ -163,17 +159,17 @@ Now try to run `figlet`. Does that work?
 
 ## Host and containers are independent things
 
-* We ran an `ubuntu` container on an Linux/Windows/macOS host.
+- We ran an `ubuntu` container on an Linux/Windows/macOS host.
 
-* They have different, independent packages.
+- They have different, independent packages.
 
-* Installing something on the host doesn't expose it to the container.
+- Installing something on the host doesn't expose it to the container.
 
-* And vice-versa.
+- And vice-versa.
 
-* Even if both the host and the container have the same Linux distro!
+- Even if both the host and the container have the same Linux distro!
 
-* We can run *any container* on *any host*.
+- We can run _any container_ on _any host_.
 
   (One exception: Windows containers cannot run on Linux machines; at least not yet.)
 
@@ -181,112 +177,112 @@ Now try to run `figlet`. Does that work?
 
 ## Where's our container?
 
-* Our container is now in a *stopped* state.
+- Our container is now in a _stopped_ state.
 
-* It still exists on disk, but all compute resources have been freed up.
+- It still exists on disk, but all compute resources have been freed up.
 
-* We will see later how to get back to that container.
+- We will see later how to get back to that container.
 
 ---
 
 ## Starting another container
 
 What if we start a new container, and try to run `figlet` again?
- 
+
 ```bash
 $ docker run -it ubuntu
 root@b13c164401fb:/# figlet
 bash: figlet: command not found
 ```
 
-* We started a *brand new container*.
+- We started a _brand new container_.
 
-* The basic Ubuntu image was used, and `figlet` is not here.
+- The basic Ubuntu image was used, and `figlet` is not here.
 
 ---
 
 ## Where's my container?
 
-* Can we reuse that container that we took time to customize?
+- Can we reuse that container that we took time to customize?
 
-  *We can, but that's not the default workflow with Docker.*
+  _We can, but that's not the default workflow with Docker._
 
-* What's the default workflow, then?
+- What's the default workflow, then?
 
-  *Always start with a fresh container.*
+  _Always start with a fresh container._
   <br/>
-  *If we need something installed in our container, build a custom image.*
+  _If we need something installed in our container, build a custom image._
 
-* That seems complicated!
+- That seems complicated!
 
-  *We'll see that it's actually pretty easy!*
+  _We'll see that it's actually pretty easy!_
 
-* And what's the point?
+- And what's the point?
 
-  *This puts a strong emphasis on automation and repeatability. Let's see why ...*
+  _This puts a strong emphasis on automation and repeatability. Let's see why ..._
 
 ---
 
 ## Pets vs. Cattle
 
-* In the "pets vs. cattle" metaphor, there are two kinds of servers.
+- In the "pets vs. cattle" metaphor, there are two kinds of servers.
 
-* Pets:
+- Pets:
 
-  * have distinctive names and unique configurations
+  - have distinctive names and unique configurations
 
-  * when they have an outage, we do everything we can to fix them
+  - when they have an outage, we do everything we can to fix them
 
-* Cattle:
+- Cattle:
 
-  * have generic names (e.g. with numbers) and generic configuration
+  - have generic names (e.g. with numbers) and generic configuration
 
-  * configuration is enforced by configuration management, golden images ...
+  - configuration is enforced by configuration management, golden images ...
 
-  * when they have an outage, we can replace them immediately with a new server
+  - when they have an outage, we can replace them immediately with a new server
 
-* What's the connection with Docker and containers?
+- What's the connection with Docker and containers?
 
 ---
 
 ## Local development environments
 
-* When we use local VMs (with e.g. VirtualBox or VMware), our workflow looks like this:
+- When we use local VMs (with e.g. VirtualBox or VMware), our workflow looks like this:
 
-  * create VM from base template (Ubuntu, CentOS...)
+  - create VM from base template (Ubuntu, CentOS...)
 
-  * install packages, set up environment
+  - install packages, set up environment
 
-  * work on project
+  - work on project
 
-  * when done, shut down VM
+  - when done, shut down VM
 
-  * next time we need to work on project, restart VM as we left it
+  - next time we need to work on project, restart VM as we left it
 
-  * if we need to tweak the environment, we do it live
+  - if we need to tweak the environment, we do it live
 
-* Over time, the VM configuration evolves, diverges.
+- Over time, the VM configuration evolves, diverges.
 
-* We don't have a clean, reliable, deterministic way to provision that environment.
+- We don't have a clean, reliable, deterministic way to provision that environment.
 
 ---
 
 ## Local development with Docker
 
-* With Docker, the workflow looks like this:
+- With Docker, the workflow looks like this:
 
-  * create container image with our dev environment
+  - create container image with our dev environment
 
-  * run container with that image
+  - run container with that image
 
-  * work on project
+  - work on project
 
-  * when done, shut down container
+  - when done, shut down container
 
-  * next time we need to work on project, start a new container
+  - next time we need to work on project, start a new container
 
-  * if we need to tweak the environment, we create a new image
+  - if we need to tweak the environment, we create a new image
 
-* We have a clear definition of our environment, and can share it reliably with others.
+- We have a clear definition of our environment, and can share it reliably with others.
 
-* Let's see in the next chapters how to bake a custom image with `figlet`!
+- Let's see in the next chapters how to bake a custom image with `figlet`!

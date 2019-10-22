@@ -1,143 +1,125 @@
-# History of containers ... and Docker
+# História dos containers ... e Docker
 
 ---
 
-## First experimentations
+## Primeiras experiências
 
-* [IBM VM/370 (1972)](https://en.wikipedia.org/wiki/VM_%28operating_system%29)
+- [IBM VM/370 (1972)](https://en.wikipedia.org/wiki/VM_%28operating_system%29)
 
-* [Linux VServers (2001)](http://www.solucorp.qc.ca/changes.hc?projet=vserver)
+- [Linux VServers (2001)](http://www.solucorp.qc.ca/changes.hc?projet=vserver)
 
-* [Solaris Containers (2004)](https://en.wikipedia.org/wiki/Solaris_Containers)
+- [Solaris Containers (2004)](https://en.wikipedia.org/wiki/Solaris_Containers)
 
-* [FreeBSD jails (1999-2000)](https://www.freebsd.org/cgi/man.cgi?query=jail&sektion=8&manpath=FreeBSD+4.0-RELEASE)
+- [FreeBSD jails (1999-2000)](https://www.freebsd.org/cgi/man.cgi?query=jail&sektion=8&manpath=FreeBSD+4.0-RELEASE)
 
-Containers have been around for a *very long time* indeed.
+De fato, containers já estão na área por um _longo período_.
 
-(See [this excellent blog post by Serge Hallyn](https://s3hh.wordpress.com/2018/03/22/history-of-containers/) for more historic details.)
+(Veja [esse excelente blob do Serge Hallyn](https://s3hh.wordpress.com/2018/03/22/history-of-containers/) para mais detalhes históricos.)
 
 ---
 
 class: pic
 
-## The VPS age (until 2007-2008)
+## A éra VPS (until 2007-2008)
 
 ![lightcont](images/containers-as-lightweight-vms.png)
 
 ---
 
-## Containers = cheaper than VMs
+## Containers = mais barato que VMs
 
-* Users: hosting providers.
+- Users: hosting providers.
 
-* Highly specialized audience with strong ops culture.
+- Audiência extremamente especializada com forte cultura ops..
 
 ---
 
 class: pic
 
-## The PAAS period (2008-2013)
+## O período PAAS (2008-2013)
 
 ![heroku 2007](images/heroku-first-homepage.png)
 
 ---
 
-## Containers = easier than VMs
+## Containers = mais fácil que VMs
 
-* I can't speak for Heroku, but containers were (one of) dotCloud's secret weapon
+- Eu não posso falar pelo Heroku, mas os containers foram (uma das) armas secretas da dotCloud
 
-* dotCloud was operating a PaaS, using a custom container engine.
+- dotCloud estava operando um PaaS, usando um engine próprio de containers.
 
-* This engine was based on OpenVZ (and later, LXC) and AUFS.
+- Esse engine era baseado no OpenVZ (e depois, LXC) e AUFS.
 
-* It started (circa 2008) as a single Python script.
+- Começou como (circa 2008) um simples script Python.
 
-* By 2012, the engine had multiple (~10) Python components.
-  <br/>(and ~100 other micro-services!)
+- Em 2012, tinha multiplos (~10) componentes Python.
+  <br/>(e outros ~100 microserviços!)
 
-* End of 2012, dotCloud refactors this container engine.
+- No final de 2012, dotCloud refatorou esse engine.
 
-* The codename for this project is "Docker."
-
----
-
-## First public release of Docker
-
-* March 2013, PyCon, Santa Clara:
-  <br/>"Docker" is shown to a public audience for the first time.
-
-* It is released with an open source license.
-
-* Very positive reactions and feedback!
-
-* The dotCloud team progressively shifts to Docker development.
-
-* The same year, dotCloud changes name to Docker.
-
-* In 2014, the PaaS activity is sold.
+- O codinome para esse projeto foi "Docker."
 
 ---
 
-## Docker early days (2013-2014)
+## Primeira versão pública do Docker
+
+- Em Março de 2013 na PyCon, Santa Clara:
+  <br/>"Docker" é mostrado ao público pela primeira vez.
+
+- Lançado como uma licensa open source.
+
+- Teve reações e feedbacks muito positivos!
+
+- O time dotCloud progressivamente chaveu para o desenvolvimento do Docker.
+
+- No mesmo ano, dotCloud mudou o nome para Docker.
+
+- Em 2014, o PaaS foi vendido.
 
 ---
 
-## First users of Docker
-
-* PAAS builders (Flynn, Dokku, Tsuru, Deis...)
-
-* PAAS users (those big enough to justify building their own)
-
-* CI platforms
-
-* developers, developers, developers, developers
+## Docker early days (2013-2016)
 
 ---
 
-## Positive feedback loop
+## Primeiros usuários do docker
 
-* In 2013, the technology under containers (cgroups, namespaces, copy-on-write storage...)
-  had many blind spots.
+- PAAS (Flynn, Dokku, Tsuru, Deis...)
 
-* The growing popularity of Docker and containers exposed many bugs.
+- Usuários de PAAS
 
-* As a result, those bugs were fixed, resulting in better stability for containers.
+- CI platforms
 
-* Any decent hosting/cloud provider can run containers today.
-
-* Containers become a great tool to deploy/move workloads to/from on-prem/cloud.
+- developers, developers, developers, developers
 
 ---
 
-## Maturity (2015-2016)
+## Docker se torna um padrão da industria
+
+- Docker atinge a versão 1.0 milestone.
+
+- Plataformas existentes como Mesos e Cloud Foundry adicionam suporte ao Docker.
+
+- Padronização na OCI (Open Containers Initiative).
+
+- Outros engines de containers são desenvolvidos.
+
+- Criação da CNCF (Cloud Native Computing Foundation).
 
 ---
 
-## Docker becomes an industry standard
+## Docker se torna uma plataforma
 
-* Docker reaches the symbolic 1.0 milestone.
+- O engine de container é agora conhecido como "Docker Engine."
 
-* Existing systems like Mesos and Cloud Foundry add Docker support.
+- Outras ferramentas foram adicionadas:
 
-* Standardization around the OCI (Open Containers Initiative).
+  - Docker Compose ("Fig")
+  - Docker Machine
+  - Docker Swarm
+  - Kitematic
+  - Docker Cloud ("Tutum")
+  - Docker Datacenter
+  - etc.
 
-* Other container engines are developed.
-
-* Creation of the CNCF (Cloud Native Computing Foundation).
-
----
-
-## Docker becomes a platform
-
-* The initial container engine is now known as "Docker Engine."
-
-* Other tools are added:
-  * Docker Compose (formerly "Fig")
-  * Docker Machine
-  * Docker Swarm
-  * Kitematic
-  * Docker Cloud (formerly "Tutum")
-  * Docker Datacenter
-  * etc.
-
-* Docker Inc. launches commercial offers.
+- Docker Inc. lança ofertas comerciais.

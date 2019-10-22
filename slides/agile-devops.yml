@@ -1,0 +1,33 @@
+title: |
+  Containers e
+  Docker
+
+chat: "[Slack](https://xxxx)"
+
+gitrepo: github.com/dvriesman/container.training
+
+slides: http://localhost/
+
+exclude:
+- in-person
+
+chapters:
+- shared/title.md
+- shared/toc.md
+- - containers/Docker_History.md
+  - containers/First_Containers.md
+  - containers/Background_Containers.md
+  - containers/Start_And_Attach.md
+- - containers/Initial_Images.md
+  - containers/Building_Images_Interactively.md
+  - containers/Building_Images_With_Dockerfiles.md
+  - containers/Cmd_And_Entrypoint.md
+  - containers/Publishing_To_Docker_Hub.md
+- - containers/Naming_And_Inspecting.md
+  - containers/Getting_Inside.md
+  - containers/Container_Networking_Basics.md
+  - containers/Network_Drivers.md
+  - containers/Container_Network_Model.md
+  - containers/Working_With_Volumes.md
+  - containers/Resource_Limits.md
+  - shared/thankyou.md
